@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Jika Anda memakai repo ini, mohon kutip seperti di bawah."
+title: "skill-template"
+type: software
+version: 1.0.0
+date-released: 2026-11-15
+license: MIT
+repository-code: "https://github.com/OWNER/skill-template"
+authors:
+  - name: "AUTHOR"
+abstract: "Kerangka repo skill agent (format SKILL.md) untuk Claude Code, claude.ai, Codex, dan platform lain, lengkap dengan CI, rilis, evals, dan hero 3D."
+keywords:
+  - agent-skills
+  - skill-md
+  - template

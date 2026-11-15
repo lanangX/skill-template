@@ -1,0 +1,15 @@
+{
+  "name": "starter",
+  "description": "Skill agent buatan AUTHOR, siap dipasang di Claude Code dan platform lain.",
+  "owner": {
+    "name": "AUTHOR"
+  },
+  "plugins": [
+    {
+      "name": "my-skill",
+      "source": "./",
+      "description": "Skill contoh bawaan template: merangkum teks panjang jadi satu kalimat inti dan tiga butir.",
+      "category": "productivity"
+    }
+  ]
+}

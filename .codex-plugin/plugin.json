@@ -1,0 +1,6 @@
+{
+  "name": "my-skill",
+  "version": "1.0.0",
+  "description": "Skill contoh bawaan template: merangkum teks panjang jadi satu kalimat inti dan tiga butir.",
+  "skills": "./skills/"
+}

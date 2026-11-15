@@ -1,0 +1,8 @@
+{
+  "name": "hero3d",
+  "private": true,
+  "description": "Sumber render hero 3D untuk README",
+  "dependencies": {
+    "three": "0.187.0"
+  }
+}

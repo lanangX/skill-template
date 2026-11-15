@@ -1,0 +1,13 @@
+{
+  "name": "my-skill",
+  "displayName": "My Skill",
+  "version": "1.0.0",
+  "description": "Skill contoh bawaan template: merangkum teks panjang jadi satu kalimat inti dan tiga butir.",
+  "author": {
+    "name": "AUTHOR"
+  },
+  "homepage": "https://github.com/OWNER/skill-template",
+  "repository": "https://github.com/OWNER/skill-template",
+  "license": "MIT",
+  "keywords": ["agent-skills", "skill-md", "template"]
+}

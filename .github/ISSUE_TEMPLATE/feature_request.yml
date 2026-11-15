@@ -1,0 +1,17 @@
+name: Usul fitur
+description: Usul kemampuan atau perbaikan untuk skill.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Masalah yang ingin diselesaikan
+      description: Ceritakan situasinya, bukan solusinya.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Usulan
+    validations:
+      required: false

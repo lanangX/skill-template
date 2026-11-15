@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Versi tag harus sama dengan versi plugin
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="${TAG#v}"
+          for f in .claude-plugin/plugin.json .codex-plugin/plugin.json; do
+            V="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["version"])' "$f")"
+            if [ "$V" != "$VERSION" ]; then
+              echo "::error::$f bernilai $V, tag meminta $VERSION"
+              exit 1
+            fi
+          done
+
+      - name: Validasi dan build
+        run: ./scripts/build.sh
+
+      - name: Buat GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" dist/*.zip \
+            --title "$TAG" \
+            --notes "Lihat [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/$TAG/CHANGELOG.md) untuk detail perubahan."

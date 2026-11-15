@@ -1,0 +1,44 @@
+name: Laporan bug
+description: Skill menghasilkan keluaran yang salah, melanggar aturannya, atau gagal dipasang.
+labels: [bug]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Claude Code
+        - claude.ai / Claude Desktop
+        - Codex / ChatGPT
+        - Perplexity
+        - Gemini
+        - Lainnya
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versi skill
+      description: Lihat `version` di plugin.json atau halaman Releases.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Masukan yang dipakai
+      description: Hapus data pribadi dan rahasia sebelum menempel.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Apa yang terjadi
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Apa yang seharusnya terjadi
+    validations:
+      required: true

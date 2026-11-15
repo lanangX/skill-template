@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Claude Code CLI (untuk claude plugin validate)
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Pastikan placeholder template sudah diganti
+        if: ${{ !github.event.repository.is_template }}
+        run: |
+          if grep -rnE 'OWNE[R]/|my-ski[l]l|skill-templat[e]|AUTHO[R]' . \
+              --include='*.md' --include='*.json' --include='*.yml' --include='*.cff' \
+              --exclude-dir=.git --exclude-dir=dist --exclude-dir=node_modules ; then
+            echo "::error::Masih ada placeholder template. Jalankan scripts/init.sh atau ganti manual."
+            exit 1
+          fi
+
+      - name: Validasi dan build
+        run: ./scripts/build.sh
+
+      - name: Simpan zip hasil build
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*.zip
+          if-no-files-found: error
